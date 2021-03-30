@@ -10,9 +10,9 @@ void main() {
 }
 
 class Result extends StatelessWidget {
-  final double resultado;
+  final double valorReais;
 
-  Result(this.resultado);
+  Result(this.valorReais);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class Result extends StatelessWidget {
             Text.rich(
               TextSpan(
                 children: <TextSpan>[
-                  TextSpan(text: 'R\$ ${resultado}', style: TextStyle(fontSize: 20)),
+                  TextSpan(text: 'R\$ ${valorReais}', style: TextStyle(fontSize: 20)),
                 ],
               ),
             ),
@@ -49,7 +49,7 @@ class Result extends StatelessWidget {
               TextSpan(
                 children: <TextSpan>[
                   TextSpan(text: 'Dólar: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  TextSpan(text: '\$ 99.00', style: TextStyle(fontSize: 20)),
+                  TextSpan(text: '\$ ${valorReais*5.78}', style: TextStyle(fontSize: 20)),
                 ],
               ),
             ),
@@ -57,7 +57,7 @@ class Result extends StatelessWidget {
               TextSpan(
                 children: <TextSpan>[
                   TextSpan(text: 'Euro: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  TextSpan(text: '\€ 99.00', style: TextStyle(fontSize: 20)),
+                  TextSpan(text: '\€${valorReais*6.80}', style: TextStyle(fontSize: 20)),
                 ],
               ),
             ),
@@ -65,7 +65,7 @@ class Result extends StatelessWidget {
               TextSpan(
                 children: <TextSpan>[
                   TextSpan(text: 'Libra: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  TextSpan(text: '\£ 99.00', style: TextStyle(fontSize: 20)),
+                  TextSpan(text: '\£ ${valorReais*7.95}', style: TextStyle(fontSize: 20)),
                 ]
               )
             )
@@ -78,7 +78,7 @@ class Result extends StatelessWidget {
 
 class Home extends StatelessWidget {
   var controller = MoneyMaskedTextController(leftSymbol: 'R\$ ', decimalSeparator: ',', thousandSeparator: '.');
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,8 +109,9 @@ class Home extends StatelessWidget {
             SizedBox(height: 10),
             ElevatedButton(
               child: Text("Converter"),
+              style: ElevatedButton.styleFrom(primary: Colors.green),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Result(100.0)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Result(controller.numberValue)));
               }
             )
         ])
