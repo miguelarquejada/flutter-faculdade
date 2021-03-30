@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Cálculo álcool x gasolina"),
+        backgroundColor: Color(0xff885566),
       ),
       body: Center(
         child: Container(
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
               ),
               FlatButton(
                 child: Text("Cotação"),
-                color: Colors.orange,
+                color: Color(0xff885566),
                 onPressed: () {
                   setState(() {
                     final double valor = double.parse(valorEtanol.text) / double.parse(valorGasolina.text);
